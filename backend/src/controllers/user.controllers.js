@@ -2,6 +2,7 @@ import {asyncHandler} from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/apiError.js";
 import {ApiResponse} from "../utils/apiResponse.js";
 import {User} from "../models/user.models.js";
+import { Question } from "../models/question.models.js";
 import jwt from "jsonwebtoken";
 
 
@@ -140,12 +141,29 @@ const updatePassword = asyncHandler(async(req,res) => {
 
 })
 
-const getUserQuestions = asyncHandler(async(req, res) => {
+const getCurrentUser = asyncHandler(async(req,res) => {
+    return res
+    .status(200)
+    .json(
+        new ApiResponse(200, req.user, "Current user fetched successfully.")
+    )
+})
 
+const getMyQuestions = asyncHandler(async(req,res) => {
+    const questions = await Question.find({
+        author: req.user._id
+    })
+    .sort({ createdAt: -1 })
+    .select("title body createdAt")
+
+    return res
+    .status(200)
+    .json(new ApiResponse(200, questions, "Current user's questions fetched successfully."))
 })
 
 export {
     registerUser,
     loginUser,
-    logOutUser
+    logOutUser,
+    updatePassword
 }
