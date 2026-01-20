@@ -3,7 +3,6 @@ import { ApiError } from "../utils/apiError.js";
 import {ApiResponse} from "../utils/apiResponse.js";
 import {User} from "../models/user.models.js";
 import { Question } from "../models/question.models.js";
-import jwt from "jsonwebtoken";
 
 
 const registerUser = asyncHandler( async(req, res) => {
@@ -165,5 +164,7 @@ export {
     registerUser,
     loginUser,
     logOutUser,
-    updatePassword
+    updatePassword,
+    getCurrentUser,
+    getMyQuestions
 }
