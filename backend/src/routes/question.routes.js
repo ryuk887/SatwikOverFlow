@@ -1,12 +1,20 @@
-import {Router} from "express";
+import { Router } from "express";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
-import { createQuestion, getAllQuestions, getSingleQuestion, deleteQuestion } from "../controllers/question.controllers.js";
+import {
+    createQuestion,
+    getAllQuestions,
+    getSingleQuestion,
+    deleteQuestion
+} from "../controllers/question.controllers.js";
 
-const router = Router()
+const router = Router();
 
-router.route("/CreateQuestion").post(verifyJWT, createQuestion)
-router.route("/AllQuestions").get(getAllQuestions)
-router.route("/Question/:questionId").get(getSingleQuestion)
-router.route("/DeleteQuestion/:questionId").delete(verifyJWT, deleteQuestion)
+// public
+router.get("/", getAllQuestions);
+router.get("/:questionId", getSingleQuestion);
 
-export default router
+// protected
+router.post("/", verifyJWT, createQuestion);
+router.delete("/:questionId", verifyJWT, deleteQuestion);
+
+export default router;
