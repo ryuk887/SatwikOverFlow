@@ -1,9 +1,9 @@
-import { Question } from "../models/question.models";
-import { asyncHandler } from "../utils/asyncHandler";
-import { ApiError } from "../utils/apiError";
-import { ApiResponse } from "../utils/apiResponse";
-import { Answer } from "../models/answer.models";
-import { Vote } from "../models/vote.models";
+import { Question } from "../models/question.models.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
+import { ApiError } from "../utils/apiError.js";
+import { ApiResponse } from "../utils/apiResponse.js";
+import { Answer } from "../models/answer.models.js";
+import { Vote } from "../models/vote.models.js";
 
 const createVote = asyncHandler(async (req, res) => {
     const { QuestionId } = req.params

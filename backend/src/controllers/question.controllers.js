@@ -2,6 +2,8 @@ import { Question } from "../models/question.models.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/apiError.js";
 import { ApiResponse } from "../utils/apiResponse.js";
+import mongoose from "mongoose";
+
 
 const createQuestion = asyncHandler(async(req,res) => {
     const {title, body} = req.body
