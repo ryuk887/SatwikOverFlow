@@ -23,18 +23,39 @@ function Home() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        Loading...
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-base-200 to-base-300">
+        <span className="loading loading-spinner loading-lg text-primary"></span>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
-      <div className="max-w-4xl mx-auto space-y-4">
+    <div className="min-h-screen bg-gradient-to-br from-base-200 to-base-300">
+      
+      {/* Navbar
+      <div className="navbar bg-base-100 shadow-md px-6">
+        <div className="flex-1">
+          <h1 className="text-xl font-bold text-primary">
+            Stack<span className="text-secondary">Lite</span>
+          </h1>
+        </div>
+        <div className="flex-none">
+          <button className="btn btn-primary btn-sm">
+            Ask Question
+          </button>
+        </div>
+      </div> */}
+
+      {/* Content */}
+      <div className="max-w-5xl mx-auto p-6 space-y-5">
+        <h2 className="text-2xl font-semibold mb-2">
+          Latest Questions
+        </h2>
+
         {questions.map((q) => (
           <QuestionCard
             key={q._id}
+            _id={q._id}
             title={q.title}
             body={q.body}
             voteCount={q.voteCount || 0}
@@ -42,6 +63,10 @@ function Home() {
             author={q.author?.username || "unknown"}
           />
         ))}
+
+        <button className="btn btn-outline btn-primary w-full mt-4">
+          Load More Questions
+        </button>
       </div>
     </div>
   );
